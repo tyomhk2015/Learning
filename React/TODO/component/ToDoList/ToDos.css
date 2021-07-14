@@ -1,0 +1,7 @@
+.todos {
+  background-color: rgba(77, 42, 1, 0.883);
+  margin: 2rem auto;
+  min-width: 320px;
+  max-width: 768px;
+  padding: 20px;
+}
