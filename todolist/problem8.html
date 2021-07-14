@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>演習8</title>
+	<style>
+		.pagination-container{
+			margin-top: 30px;
+			text-align: center;
+		}
+		.pagination{
+			display: inline-block;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.pagination:after{
+			display: block;
+			content: "";
+			clear:both;
+		}
+		.pagination > li{
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+		.pagination > li + li{
+			margin-left: 10px;
+		}
+		.pagination > li > a{
+			display: inline-block;
+			text-decoration: none;
+			padding: 10px;
+			border: solid 1px transparent;
+			border-radius: 20%;
+			background-color: #E4E4E5;
+			color: #021E4A;
+			
+		}
+		.pagination > li.active > a{
+			background-color: #009DDF;
+			color: #FFFFFF;
+			cursor: default;
+		}
+		.pagination > li.disabled > a{
+			background-color: #E4E4E5;
+			color: #FFFFFF;
+			cursor: default;
+		}
+	</style>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="jsi-pagination-wrapper"></div>
+<script type="text/babel">
+class PaginationWrapper extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {pageIndex : 0};
+	}
+	get maxPageIndices(){
+		return [10, 10, 5];
+	}
+	changePageIndex(pageIndex){
+		this.setState({pageIndex : pageIndex});
+	}
+	render(){
+		const paginations = this.maxPageIndices.map((data, i) => {
+			return (
+				<PaginationContainer key={i} changePageIndex={this.changePageIndex.bind(this)} pageIndex={this.state.pageIndex} pageCount={data} />
+			);
+		});
+		return (
+			<div>{paginations}</div>
+		);
+	};
+}
+class PaginationContainer extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+	goToPrevious(event){
+		event.preventDefault();
+		
+		const pageIndex = this.pageIndex - 1;
+		
+		if(pageIndex < 0){
+			return;
+		}
+		this.props.changePageIndex(pageIndex);
+	}
+	goToNext(event){
+		event.preventDefault();
+		
+		const pageIndex = this.pageIndex + 1;
+		
+		if(pageIndex > this.props.pageCount - 1){
+			return;
+		}
+		this.props.changePageIndex(pageIndex);
+	}
+	changePageIndex(event, pageIndex){
+		event.preventDefault();
+		this.props.changePageIndex(pageIndex);
+	}
+	get pageIndex(){
+		return Math.min(this.props.pageIndex, this.props.pageCount - 1);
+	}
+	render(){
+		const pages = [... new Array(this.props.pageCount).keys()].map((index) => {
+			return (
+				<li key={index} className={this.pageIndex == index ? 'active' : ''}><a href="#" onClick={event => {this.changePageIndex(event, index)}}>{index + 1}</a></li>
+			)
+		});
+		return (
+			<div className="pagination-container">
+				<ol className="pagination">
+					<li className={this.pageIndex == 0 ? 'disabled' : ''}><a href="#" onClick={this.goToPrevious.bind(this)}>&lt;</a></li>
+					{pages}
+					<li className={this.pageIndex == this.props.pageCount - 1 ? 'disabled' : ''}><a href="#" onClick={this.goToNext.bind(this)}>&gt;</a></li>
+				</ol>
+			</div>
+		);
+	};
+}
+ReactDOM.render(
+	<PaginationWrapper />,
+	document.getElementById('jsi-pagination-wrapper')
+);
+</script>
+</body>
+</html>

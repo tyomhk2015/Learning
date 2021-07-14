@@ -1,0 +1,44 @@
+.new-todo {
+  background-color: rgba(77, 42, 1, 0.883);
+  margin: 2rem auto;
+  min-width: 320px;
+  max-width: 768px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+}
+
+.new-todo button {
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #ff9100;
+  background-color: #ff9100;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.new-todo button + button {
+  margin-left: 20px
+}
+
+.new-todo button:hover,
+.new-todo button:active {
+  color: #333333;
+  background-color: #fffb00;
+  border-color: #fffb00;
+}
+
+.new-todo button.alternative {
+  color: #220131;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.new-todo button.alternative:hover,
+.new-todo button.alternative:active {
+  color: #333333;
+  background-color: #fffb00;
+}

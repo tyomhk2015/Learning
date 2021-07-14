@@ -1,0 +1,24 @@
+.todos-filter {
+  color: white;
+}
+
+.todos-filter__control {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 12px 0;
+}
+
+.todos-filter__control > label {
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.todos-filter select {
+  font: inherit;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+}
