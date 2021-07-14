@@ -1,0 +1,10 @@
+.todos-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todos-list__fallback {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}

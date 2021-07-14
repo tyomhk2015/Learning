@@ -1,0 +1,10 @@
+* {
+  border: 0;
+  box-sizing: content-box;
+  font-family: 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS P Gothic', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', arial, sans-serif, verdana, Helvetica;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #202020;
+}
