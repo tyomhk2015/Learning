@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style media="screen">
+    * {
+  margin: 0;
+  padding: 0;
+  }
+  ul, ol {
+    list-style-type: none;
+  }
+  .wrapper {
+    margin: 30px 0 0 30px;
+    position: relative;
+  }
+  .carousel-content {
+    position: absolute;
+    width: 800px;
+  }
+  .carousel-frame {
+    border: 1px solid #444444;
+    overflow: hidden;
+    position: relative;
+  }
+  .carousel-frame,
+  .carousel-content > li {
+    height: 200px;
+    width: 200px;
+  }
+  .carousel-content > li {
+    float: left;
+  }
+  .carousel-content > li:first-child,
+  .carousel-content > li:last-child{
+    background-color: lime;
+  }
+  .carousel-content > li:nth-of-type(2){
+    background-color: aqua;
+  }
+  .carousel-content > li:nth-of-type(3){
+    background-color: yellow;
+  }
+  .before-btn,
+  .next-btn {
+    color: #000000;
+    text-decoration: none;
+  }
+  .next-btn {
+    margin-left: 170px;
+  }
+  .indicator {
+    display: flex;
+  }
+  .indicator > li + li {
+    margin-left: 20px;
+  }
+  .isCurrent {
+    color: red;
+  }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="carousel-frame">
+      <ul class="carousel-content jsc-carousel-content">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+      </ul>
+    </div>
+    <a href="javascript:void(0);"class="before-btn jsc-before-btn">◀</a>
+    <a href="javascript:void(0);"class="next-btn jsc-next-btn">▶</a>
+    <ol class="indicator jsc-indicator">
+      <li class="isCurrent">★</li>
+      <li>★</li>
+      <li>★</li>
+    </ol>
+  </div>
+  <script>
+    var $content = $('.jsc-carousel-content'),
+    $indicators = $('.jsc-indicator').find('li'),
+    slideDistance = -$content.find('li').width(),
+    contentWidth = -($content.width() + slideDistance),
+    currentIndex = 0,
+    maxIndex = $indicators.length;
+
+    var changeIndicator = function(changedIndex){
+      var pendingIndex = currentIndex + changedIndex;
+      if(pendingIndex < 0 ) {
+        currentIndex = maxIndex + changedIndex;
+      } else if(pendingIndex >= maxIndex){
+        currentIndex = 0;
+      } else {
+        currentIndex = pendingIndex;
+      }
+      $indicators.removeClass('isCurrent');
+      $indicators.eq(currentIndex).addClass('isCurrent');
+    }
+
+    var slideContent = function(endPos, resetPos, slideDistance){
+      var leftPos = $content.position().left;
+      if(leftPos === endPos) {
+        $content.css('left', resetPos);
+        leftPos = $content.position().left;
+      }
+      $content.animate({left: leftPos + slideDistance}, 300);
+    };
+
+    $('.jsc-before-btn').on('click', function(){
+      if($content.is(':animated')) return;
+      slideContent(0, contentWidth, -slideDistance);
+      changeIndicator(-1);
+    });
+
+    $('.jsc-next-btn').on('click', function(){
+      if($content.is(':animated')) return;
+      slideContent(contentWidth, 0, slideDistance);
+      changeIndicator(1);
+    });
+  </script>
+</body>
+</html>
