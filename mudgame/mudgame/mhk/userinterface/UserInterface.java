@@ -4,6 +4,7 @@ import com.mudgame.mhk.stage.StageMap;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.FileSystems;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -43,20 +44,13 @@ public class UserInterface {
      */
     public static void showTitle() {
 
-        boolean saveFileExist = checkSaveFile(); // Store the result of searching the saved file.
         int columns = 67; // The number of diamonds to be printed.
         String path = "C:\\Users\\MHK\\IdeaProjects\\mudGame\\src\\com\\mudgame\\mhk\\userinterface\\title.txt";
 
         String context = "";
 
         context += showContext(path);
-
         context += "\n　　　1. 게임 시작\n";
-//        if (saveFileExist) {
-//            context += "　　　2. 이어서 하기";
-//        } else {
-//            context += "　　　2. \uD83D\uDD12";
-//        }
         context +="　　　0. 게임 종료\n\n";
 
         for (int index = 0; index < columns; index++){
@@ -100,7 +94,7 @@ public class UserInterface {
      */
     public static boolean checkSaveFile() {
         // The location of the saved file.
-        String path = "C:\\Users\\MHK\\IdeaProjects\\mudGame\\src\\com\\mudgame\\mhk\\playdata\\savedData.txt";
+         String path = FileSystems.getDefault().getPath("").toAbsolutePath() + "/src/com/mudgame/mhk/playdata/savedData.txt";
         // Check if the saved file exist.
         boolean result = new File(path).isFile();
         return result;
@@ -111,7 +105,7 @@ public class UserInterface {
      */
     public static void informNoSavedData() {
         System.out.println();
-        System.out.println(ANSI_RED + "SYSTEM : " + "\n이 기능은 게임 세이브 데이터가 필요합니다.\n하지만 현재는 게임 세이브 데이터가 존재하지 않습니다.\n\n(Enter 키를 눌러서 계속 진행하기.)\n" + ANSI_RESET);
+        System.out.println(ANSI_RED + "SYSTEM : " + "\nYou need a saved game data to use this feature.\nCurrently, you do not have any saved game data.\n\n(Press 'Enter' key to proceed.)\n" + ANSI_RESET);
         // For the player's reading sake, pause the logic until Enter is pressed.
         new Scanner(System.in).nextLine();
     }
@@ -130,7 +124,7 @@ public class UserInterface {
      */
     public static void invalidateInput() {
         // Display the warning message.
-        System.out.println(ANSI_RED + "\nSYSTEM : " + "※ 올바른 값이 아닙니다. 바른 값을 입력해 주세요.\n(Enter 키를 눌러서 계속 진행하기.)" + ANSI_RESET);
+        System.out.println(ANSI_RED + "\nSYSTEM : " + "※ Invalid input. Put valid input.\n(Press 'Enter' key to proceed.)" + ANSI_RESET);
         // For the player's reading sake, pause the logic until Enter is pressed.
         new Scanner(System.in).nextLine();
     }
@@ -139,7 +133,7 @@ public class UserInterface {
      * Terminate the program.
      */
     public static void exitGame() {
-        System.out.println(ANSI_RED + "SYSTEM : " + "\n게임을 종료합니다.\n" + ANSI_RESET);
+        System.out.println(ANSI_RED + "SYSTEM : " + "\nYou will exit the game soon.\n" + ANSI_RESET);
         System.exit(0);
     }
 
@@ -149,36 +143,35 @@ public class UserInterface {
      */
     public static void showManual() {
         System.out.println("◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇");
-        System.out.println("\n　　　" + ANSI_CYAN + "※ Pain Station 게임 매뉴얼 ※" + ANSI_RESET);
-        System.out.println("\n　　・" + ANSI_YELLOW + "목표" + ANSI_RESET + " : 불법 조직에게 빼앗긴 플레이스테이션5를 되찾자! \uD83D\uDE08");
-//        System.out.println("\n　　・" + ANSI_YELLOW + "게임 진행 순서" + ANSI_RESET + " : " + ANSI_GREEN + "플레이어" + ANSI_RESET + "가 선행동개시 (이동, 아이템 사용, 공격, 스킬사용 등) \u27A1 " + ANSI_RED + "적" + ANSI_RESET + "이 행동 개시 (이동, 공격 등)");
-        System.out.println("\n　　・" + ANSI_YELLOW + "각 스테이지 승리 조건" + ANSI_RESET + " : 해당 스테이지의 " + ANSI_RED + "보스" + ANSI_RESET + "를 쓰러트리면 다음 스테이지로 이동하게 됩니다.");
-        System.out.println("\n　　・" + ANSI_YELLOW + "게임 내의 모든 범주" + ANSI_RESET + " : ");
-        System.out.println("　　           남아있는 HP가 50% 초과  :  남아있는 HP가 50% 이하  :  남아있는 HP가 0");
-        System.out.println("　　  플레이어 :          " + ANSI_YELLOW + "♥" + ANSI_RESET +
+        System.out.println("\n　　　" + ANSI_CYAN + "※ Manual ※" + ANSI_RESET);
+        System.out.println("\n　　・" + ANSI_YELLOW + "Objective" + ANSI_RESET + " : Retrieve your PS5 from the yakuza.! \uD83D\uDE08");
+        System.out.println("\n　　・" + ANSI_YELLOW + "Main objective in each stage" + ANSI_RESET + " : Defeat the " + ANSI_RED + "boss" + ANSI_RESET + " of each stage.");
+        System.out.println("\n　　・" + ANSI_YELLOW + "Legend" + ANSI_RESET + " : ");
+        System.out.println("　　           Leftover HP more than 50%  :  Leftover HP is equal or less than 50%  :  No leftover HP");
+        System.out.println("　　　　　Player :          " + ANSI_YELLOW + "♥" + ANSI_RESET +
                                   "                       " + ANSI_YELLOW + "♡" + ANSI_RESET +
                                   "                    " + ANSI_YELLOW + "\uD83D\uDC80" + ANSI_RESET);
-        System.out.println("플레이어(각성) :          " + ANSI_YELLOW_BG + "♥" + ANSI_RESET +
+        System.out.println("Player(Awakened) :          " + ANSI_YELLOW_BG + "♥" + ANSI_RESET +
                 "                       " + ANSI_YELLOW_BG + "♡" + ANSI_RESET +
                 "                    " + ANSI_YELLOW_BG + "\uD83D\uDC80" + ANSI_RESET);
-        System.out.println("　　  　일반적 :          " + ANSI_RED + "▣" + ANSI_RESET +
+        System.out.println("　　Normal Enemy :          " + ANSI_RED + "▣" + ANSI_RESET +
                 "                       " + ANSI_RED + "□" + ANSI_RESET +
                 "                    " + ANSI_RED + "\uD83D\uDC80" + ANSI_RESET);
-        System.out.println("　특수요원(적) :          " + ANSI_RED + "◈" + ANSI_RESET +
+        System.out.println("　　Agent(Enemy) :          " + ANSI_RED + "◈" + ANSI_RESET +
                 "                       " + ANSI_RED + "◇" + ANSI_RESET +
                 "                    " + ANSI_RED + "\uD83D\uDC80" + ANSI_RESET);
-        System.out.println("　　　보스(적) :          " + ANSI_RED + "★" + ANSI_RESET +
+        System.out.println("　　Boss(Enemy) :          " + ANSI_RED + "★" + ANSI_RESET +
                 "                       " + ANSI_RED + "☆" + ANSI_RESET +
                 "                    " + ANSI_RED + "\uD83D\uDC80" + ANSI_RESET);
-        System.out.println("\n　　           　 　　  기타 범주");
-        System.out.println("　         암거래 상인 :  " + UserInterface.ANSI_CYAN + "\uD83D\uDD30" + UserInterface.ANSI_RESET);
-        System.out.println("　　　 이동 불가능한 벽 :  ー , ｜ , ♨");
-        System.out.println("다음 구역으로 진입 가능 :  ・ , \u27A1 , \u2B05");
-        System.out.println("　　　 　　　 　   상자 :  ▩");
-        System.out.println("　　　 　　　 　   나무 :  ♣");
-        System.out.println("\n　　・" + ANSI_YELLOW + "TIP" + ANSI_RESET + " : ");
-        System.out.println("　　　　　　- 적을 쓰러트리면 일정 확률로 전투에 도움이 되는 아이템을 얻을 수 있습니다.");
-        System.out.println("　　　　　　- 1회차를 클리어하면 2회차부터는 플레이어가 각성하게 되며, 스킬을 사용할 수 있게 됩니다.");
+        System.out.println("\n　　Other legend");
+        System.out.println("　　Merchant :  " + UserInterface.ANSI_CYAN + "\uD83D\uDD30" + UserInterface.ANSI_RESET);
+        System.out.println("　　Wall :  ー , ｜ , ♨");
+        System.out.println("　　Next  :  ・ , \u27A1 , \u2B05");
+        System.out.println("　　Box :  ▩");
+        System.out.println("　　Tree :  ♣");
+        System.out.println("\n　・" + ANSI_YELLOW + "TIP" + ANSI_RESET + " : ");
+        System.out.println("　　　　　　- You have a small chance of looting a item from enemies by defeating them.");
+        System.out.println("　　　　　　- After finishing the whole game at least once, you will be able to use skills.");
         System.out.println("\n◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇");
     }
 }

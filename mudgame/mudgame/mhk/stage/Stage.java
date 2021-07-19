@@ -2,6 +2,8 @@ package com.mudgame.mhk.stage;
 
 import com.mudgame.mhk.userinterface.UserInterface;
 
+import java.nio.file.FileSystems;
+
 public class Stage {
 
     private int enemies = 5; // The number of enemies left on the map.
@@ -37,7 +39,7 @@ public class Stage {
      */
     public void showStageImg() {
         // The absolute path of the text file.
-        String path = "C:\\Users\\MHK\\IdeaProjects\\mudGame\\src\\com\\mudgame\\mhk\\stage\\" + this.fileName;
+        String path = FileSystems.getDefault().getPath("").toAbsolutePath() + "/src/com/mudgame/mhk/stage/"+ this.fileName;
         String context = "";
         context += UserInterface.ANSI_CYAN; // Change the console's font color to cyan.
         context += UserInterface.showContext(path);

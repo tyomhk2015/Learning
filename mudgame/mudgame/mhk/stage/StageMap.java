@@ -1,16 +1,13 @@
 package com.mudgame.mhk.stage;
-
 import com.mudgame.mhk.person.Vendor;
 import com.mudgame.mhk.person.brawler.Brawler;
 import com.mudgame.mhk.person.brawler.Player;
 import com.mudgame.mhk.person.brawler.enemy.Enemy;
 import com.mudgame.mhk.person.brawler.enemy.EnemyBoss;
 import com.mudgame.mhk.userinterface.UserInterface;
-
-import java.util.Arrays;
 import java.util.Random;
 
-public class StageMap extends Thread {
+public class StageMap {
 
 
     /**
@@ -558,7 +555,7 @@ public class StageMap extends Thread {
 
         if(!isEnemyNearBy(target)){
             // Show error message if there is no enemy.
-            System.out.println(UserInterface.ANSI_RED + "적이 없습니다." + UserInterface.ANSI_RESET);
+            System.out.println(UserInterface.ANSI_RED + "There is no enemy at the direction." + UserInterface.ANSI_RESET);
             target_enemy_pos = null;// Reset the variable.
         }
 
@@ -614,23 +611,11 @@ public class StageMap extends Thread {
 
         if(!isEnemyNearBy(target)){
             // Show error message if there is no enemy.
-            System.out.println("SYSTEM : " + UserInterface.ANSI_RED + "적이 없습니다." + UserInterface.ANSI_RESET);
+            System.out.println("SYSTEM : " + UserInterface.ANSI_RED + "There is no enemy at the direction." + UserInterface.ANSI_RESET);
             target_enemy_pos = null;// Reset the variable.
         }
 
         return target_enemy_pos;
-    }
-
-    public static void setStageMapArr(String[][] stageMapArr) {
-        StageMap.stageMapArr = stageMapArr;
-    }
-
-    public static void setStageMapsArr(String[][][] stageMapsArr) {
-        StageMap.stageMapsArr = stageMapsArr;
-    }
-
-    public static int getSections() {
-        return sections;
     }
 
     public static int getCurrent_section() {
@@ -641,51 +626,7 @@ public class StageMap extends Thread {
         StageMap.current_section = current_section;
     }
 
-    public void activateAutoMap(){
-        this.setPriority(10);
-        this.start();
-    }
-
     public static int getStage_num() {
         return stage_num;
-    }
-
-    public static void setStage_num(int stage_num) {
-        StageMap.stage_num = stage_num;
-    }
-
-    public void pauseAutoMap(){
-        this.thread_flag = false;
-    }
-
-    public static void stopAutoMap(){
-        thread_flag = false;
-    }
-
-    public void resumeAutoMap(){
-        this.thread_flag = true;
-        this.setPriority(9);
-        new Thread(this).start();
-    }
-
-    @Override
-    public  void run() {
-        // TODO
-//        while (this.thread_flag) {
-//            if(!(getStageMaps() != null || getStageMap() != null)){
-//                break;
-//            }
-//
-//            UserInterface.clearConsole();
-//            displayStageMap();
-//            ThreadTracker.isMapDisplayed = true;
-//
-//            try {
-//                Thread.sleep(2000);
-//            } catch (InterruptedException e) {
-//                System.out.println(e);
-//            }
-//            ThreadTracker.isMapDisplayed = false;
-//        }
     }
 }
