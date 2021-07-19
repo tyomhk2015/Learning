@@ -13,12 +13,6 @@ public class PlayData {
     public PlayData() {
     }
 
-    public PlayData(Player player_data, int current_stage, int [] current_pos) {
-        this.player_data = player_data;
-        this.current_stage = current_stage;
-        this.current_pos = current_pos;
-    }
-
     public Player getPlayer_data() {
         return player_data;
     }

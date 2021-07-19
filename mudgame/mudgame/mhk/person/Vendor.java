@@ -10,10 +10,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Vendor extends Person implements Runnable{
 
     // The welcome message will be displayed when the player interact with the vendor.
-    private final String greeting_msg = "헤헤...좋은 물건 많습니다.";
+    private final String greeting_msg = "Have selection of good things!";
     // The farewell message for leaving the shop.
-    private final String farewell_msg = "또 이용해 주세요...헤헤";
-    private final String confirm_msg = "더 필요한 것이 있으신가요...?";
+    private final String farewell_msg = "Come back any time.";
+    private final String confirm_msg = "Need anything else?";
     // Set a icon for the vendor
     private String icon = UserInterface.ANSI_CYAN + "\uD83D\uDD30" + UserInterface.ANSI_RESET;
     // Set a current position and a temporary position.
@@ -152,50 +152,13 @@ public class Vendor extends Person implements Runnable{
         this.checking_pos = checking_pos;
     }
 
-    public int getSection() {
-        return section;
-    }
-
     public String getIcon() {
         return icon;
-    }
-
-    public String getConfirm_msg() {
-        return confirm_msg;
-    }
-
-    public String getGreeting_msg() {
-        // Show the welcome message.
-        return greeting_msg;
     }
 
     public String getFarewell_msg() {
         // Show the farewell message.
         return farewell_msg;
-    }
-
-    public boolean getThread_flag() {
-        return this.thread_flag.get();
-    }
-
-    public void setThread_flag(AtomicBoolean thread_flag) {
-        this.thread_flag = thread_flag;
-    }
-
-    public void activateVendor(){
-        this.thread.start();
-    }
-
-    public void pauseVendor(){
-        this.thread_flag.set(false);
-        this.thread.interrupt();
-        this.thread = null;
-    }
-
-    public void resumeVendor(){
-        this.thread_flag.set(true);
-        this.thread = new Thread(this);
-        this.thread.start();
     }
 
     public Runnable getRunnable() {

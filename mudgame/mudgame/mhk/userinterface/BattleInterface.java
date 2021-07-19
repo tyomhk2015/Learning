@@ -89,7 +89,7 @@ public class BattleInterface extends Thread {
             for (int index = 0; index <= player.getBuff_point(); index++) {
                 player_status_print += "■ ";
             }
-            player_status_print += " 남은 버프 수 " + (player.getBuff_point() + 1);
+            player_status_print += " Leftover Buff " + (player.getBuff_point() + 1);
             player_status_print += "\n"; // Put new line.
         }
 
@@ -344,9 +344,9 @@ public class BattleInterface extends Thread {
         }
 
         skill_print += UserInterface.ANSI_CYAN + "\n\n　　　1. Mega punch (Attacking skill : Consumes 3 SP)" + UserInterface.ANSI_RESET;
-        skill_print += UserInterface.ANSI_CYAN + "\n　　　2. 점프 킥 (Attacking skill : Consumes 4 SP)" + UserInterface.ANSI_RESET;
-        skill_print += UserInterface.ANSI_CYAN + "\n　　　3. 그라운드 파운드 (Attacking skill : Consumes 5 SP)" + UserInterface.ANSI_RESET;
-        skill_print += UserInterface.ANSI_CYAN + "\n　　　4. 포효 (Buff skill : Consumes 6 SP)" + UserInterface.ANSI_RESET;
+        skill_print += UserInterface.ANSI_CYAN + "\n　　　2. Jump kick (Attacking skill : Consumes 4 SP)" + UserInterface.ANSI_RESET;
+        skill_print += UserInterface.ANSI_CYAN + "\n　　　3. Ground pound (Attacking skill : Consumes 5 SP)" + UserInterface.ANSI_RESET;
+        skill_print += UserInterface.ANSI_CYAN + "\n　　　4. Roar (Buff skill : Consumes 6 SP)" + UserInterface.ANSI_RESET;
         skill_print += "\n\n　　　0. Cancel 'Skill'.\n\n";
 
         for (int index = 0; index < StageMap.cols; index++) {
