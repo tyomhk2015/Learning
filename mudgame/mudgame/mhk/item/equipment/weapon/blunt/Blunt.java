@@ -9,7 +9,7 @@ public class Blunt extends Equipment {
 //    private final int attack_range = 1; // The reach of the attack.
 
     public Blunt() {
-        super.setType("무기:둔기");
+        super.setType("Weapon: Blunt");
     }
 
     public int getExtra_accuracy() {

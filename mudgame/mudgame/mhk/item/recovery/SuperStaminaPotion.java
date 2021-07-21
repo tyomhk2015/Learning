@@ -6,12 +6,12 @@ public class SuperStaminaPotion extends StaminaPotion {
 
     public SuperStaminaPotion() {
         // Define the name and type of the item.
-        super.setName("SP포션中");
-        super.setType("회복");
+        super.setName("Medium SP potion");
+        super.setType("Recovery");
         super.setPrice(super.getPrice() * 3);
         // Increase the recovery point.
         super.setRecovery_point(super.getRecovery_point() * this.stamina_recovery_ratio);
-        super.setDescription("☞ 전체 SP의 " + super.getRecovery_point() + "%를 회복합니다.");
+        super.setDescription("☞ Recovers SP by " + super.getRecovery_point() + "%.");
     }
 
     public int getStamina_recovery_ratio() {

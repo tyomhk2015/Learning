@@ -9,7 +9,7 @@ public class Blade extends Equipment {
 //    private final int attack_range = 1; // The reach of the attack.
 
     public Blade() {
-        super.setType("무기:도류");
+        super.setType("Weapon: Blade");
     }
 
     public int getExtra_critical_rate() {

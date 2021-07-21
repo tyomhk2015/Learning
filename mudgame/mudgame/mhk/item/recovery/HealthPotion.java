@@ -6,10 +6,10 @@ public class HealthPotion extends Potion {
 
     public HealthPotion() {
         // Define the name and type of the item.
-        super.setName("HP포션小");
-        super.setType("회복");
+        super.setName("Small HP potion");
+        super.setType("Recovery");
         super.setPrice(5);
-        super.setDescription("☞ 전체 HP의 " + super.getRecovery_point() + "%를 회복합니다.");
+        super.setDescription("☞ Recovers " + super.getRecovery_point() + "%.");
     }
 
 }
