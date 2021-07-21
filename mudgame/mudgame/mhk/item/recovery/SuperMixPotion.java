@@ -6,13 +6,13 @@ public class SuperMixPotion extends MixPotion {
 
     public SuperMixPotion() {
         // Define the name and type of the item.
-        super.setName("혼합포션中");
-        super.setType("회복");
+        super.setName("Medium mixed potion");
+        super.setType("Recovery");
         super.setPrice(super.getPrice() * 3);
 
         // Increase the recovery point.
         super.setRecovery_point(super.getRecovery_point() * this.mix_recovery_ratio);
-        super.setDescription("☞ 전체 HP와 SP를 " + super.getRecovery_point() + "% 만큼 회복합니다.");
+        super.setDescription("☞ Recovers HP & SP by " + super.getRecovery_point() + "%.");
     }
 
     public int getMix_recovery_ratio() {

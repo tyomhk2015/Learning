@@ -8,12 +8,12 @@ public class SuperHealthPotion extends HealthPotion {
 
     public SuperHealthPotion() {
         // Define the name and type of the item.
-        super.setName("HP포션中");
-        super.setType("회복");
+        super.setName("Medium HP potion");
+        super.setType("Recovery");
         super.setPrice(super.getPrice() * 3);
         // Increase the recovery point.
         super.setRecovery_point(super.getRecovery_point() * this.recovery_ratio);
-        super.setDescription("☞ 전체 HP의 " + super.getRecovery_point() + "%를 회복합니다.");
+        super.setDescription("☞ Recovers HP by " + super.getRecovery_point() + "%.");
     }
 
     public int getRecovery_ratio() {

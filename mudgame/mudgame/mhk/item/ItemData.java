@@ -7,13 +7,11 @@ import com.mudgame.mhk.item.equipment.armor.upperbody.SpecialArmor;
 import com.mudgame.mhk.item.equipment.weapon.blade.Katana;
 import com.mudgame.mhk.item.equipment.weapon.blade.Rapier;
 import com.mudgame.mhk.item.equipment.weapon.blunt.Bat;
-import com.mudgame.mhk.item.equipment.weapon.blunt.Blunt;
 import com.mudgame.mhk.item.equipment.weapon.blunt.Pipe;
 import com.mudgame.mhk.item.equipment.weapon.gun.Magnum;
 import com.mudgame.mhk.item.equipment.weapon.gun.Shotgun;
 import com.mudgame.mhk.item.recovery.*;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ItemData {

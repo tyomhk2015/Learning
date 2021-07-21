@@ -251,22 +251,22 @@ public class Player extends Brawler implements GodHand, Runnable {
             }
 
             if (missed) {
-                this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW + super.getName() + UserInterface.ANSI_RESET + "의 공격이 빗나갔다."; // The attack missed.
+                this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW + super.getName() + UserInterface.ANSI_RESET + " missed the attack."; 
             } else {
                 if(critical_hit == super.getCritical_ratio()) {
-                    this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW  + "크리티컬 히트!! " + UserInterface.ANSI_RESET; // Show that critical hit has been inflicted.
+                    this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW  + "Critical hit!! " + UserInterface.ANSI_RESET; // Show that critical hit has been inflicted.
                 }
-                this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + "에게 " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + "데미지를 입혔다."; // The attack hit.
+                this.attackStatus += "\nSYSTEM : Inflicted " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + " damage to " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET; // The attack hit.
                 this.boss.setCurrent_health_point(this.boss.getCurrent_health_point() - damage); // Update the HP of the boss
                 StageMap.updateStageMap(boss);
 
                 if(this.boss.getCurrent_health_point() == 0) {
                     this.obtainedItemStatus = ""; // Reset the dropped item message.
                     //IF THE ENEMY"S BEEN DOWN, GIVE EXP TO THE PLAYER
-                    this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + "를 쓰러트렸습니다."; // The attack missed.
-                    this.attackStatus += "\nSYSTEM : " + this.boss.getExperience_point() + " 경험치를 얻었습니다."; // The attack missed.
+                    this.attackStatus += "\nSYSTEM : "+ UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + " is defeated."; 
+                    this.attackStatus += "\nSYSTEM : Earned " + this.boss.getExperience_point() + " experience points."; 
                     this.setAccumulated_experience(this.getAccumulated_experience() + this.boss.getExperience_point()); // Accumulated the experience point.
-                    this.attackStatus += "\nSYSTEM : " + this.boss.getPossessing_money() + "￥을 얻었습니다."; // The attack missed.
+                    this.attackStatus += "\nSYSTEM : Earned ￥" + this.boss.getPossessing_money() + "."; 
                     this.setMoney(this.getMoney() + this.boss.getPossessing_money());
 
                     // Check if the level can be increased.
@@ -303,7 +303,7 @@ public class Player extends Brawler implements GodHand, Runnable {
                 if(this.enemies[index].getCurrent_pos()[0] == target_pos[0] && this.enemies[index].getCurrent_pos()[1] == target_pos[1]){
                     if(this.enemies[index].getCurrent_health_point() == 0) {
                         // Stop this process when the enemy don't have any leftover HP.
-                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "는 싸늘한 주검으로 되어있습니다."; // The attack missed.
+                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + " is already unconscious."; 
                         break;
                     }
 
@@ -317,22 +317,22 @@ public class Player extends Brawler implements GodHand, Runnable {
                     }
 
                     if (missed) {
-                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW + super.getName() + UserInterface.ANSI_RESET + "의 공격이 빗나갔다."; // The attack missed.
+                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW + super.getName() + UserInterface.ANSI_RESET + " missed the attack."; 
                     } else {
                         if(critical_hit == super.getCritical_ratio()) {
-                            this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW  + "크리티컬 히트!! " + UserInterface.ANSI_RESET; // Show that critical hit has been inflicted.
+                            this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_YELLOW  + "Critical hit!! " + UserInterface.ANSI_RESET; // Show that critical hit has been inflicted.
                         }
-                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "에게 " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + "데미지를 입혔다."; // The attack hit.
+                        this.attackStatus += "\nSYSTEM : Inflicted " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + " damage to" + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET; // The attack hit.
                         this.enemies[index].setCurrent_health_point(this.enemies[index].getCurrent_health_point() - damage); // Update the HP of the enemy.
                         StageMap.updateStageMap(enemies[index]);
                     }
 
                     if(enemies[index].getCurrent_health_point() == 0) {
                         //IF THE ENEMY"S BEEN DOWN, GIVE EXP TO THE PLAYER
-                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "를 쓰러트렸습니다."; // The attack missed.
-                        this.attackStatus += "\nSYSTEM : " + this.enemies[index].getExperience_point() + "경험치를 얻었습니다."; // The attack missed.
+                        this.attackStatus += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + " is defeated."; 
+                        this.attackStatus += "\nSYSTEM : Earned " + this.enemies[index].getExperience_point() + " EXP points."; 
                         this.setAccumulated_experience(this.getAccumulated_experience() + this.enemies[index].getExperience_point()); // Accumulated the experience point.
-                        this.attackStatus += "\nSYSTEM : " + this.enemies[index].getPossessing_money() + "￥을 얻었습니다."; // The attack missed.
+                        this.attackStatus += "\nSYSTEM : Earned ￥" + this.enemies[index].getPossessing_money() + "."; 
                         this.setMoney(this.getMoney() + this.enemies[index].getPossessing_money());
 
                         // Check if the level can be increased.
@@ -373,21 +373,21 @@ public class Player extends Brawler implements GodHand, Runnable {
         this.usedSkillStatus = "";
         String skillUse = "";
 
-        skillUse += "\nSYSTEM :  " + skill_name + " 스킬 사용!";
+        skillUse += "\nSYSTEM :  Used skill, " + skill_name + "!";
 
         int damage = (int) (this.useSkill(skill_name) * this.getAttack_point()); // Calculate skill damage.
 
         // Attack boss if the target position is correct.
         if(this.boss.getCurrent_pos()[0] == target_pos[0] && this.boss.getCurrent_pos()[1] == target_pos[1]) {
             this.obtainedItemStatus = "";
-            skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + "에게 " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + "데미지를 입혔다."; // The attack hit.
+            skillUse += "\nSYSTEM : Inflicted "  + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + " damage to " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET; // The attack hit.
             this.boss.setCurrent_health_point(this.boss.getCurrent_health_point() - damage); // Update the HP of the boss
             StageMap.updateStageMap(this.boss);
 
             if(boss.getCurrent_health_point() == 0) {
                 //IF THE ENEMY"S BEEN DOWN, GIVE EXP TO THE PLAYER
-                skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + "를 쓰러트렸습니다."; // The attack missed.
-                skillUse += "\nSYSTEM : " + this.boss.getExperience_point() + "경험치를 얻었습니다."; // The attack missed.
+                skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.boss.getName() + UserInterface.ANSI_RESET + " is defeated.";
+                skillUse += "\nSYSTEM : Earned " + this.boss.getExperience_point() + " EXP points.";
                 this.setAccumulated_experience(this.getAccumulated_experience() + this.boss.getExperience_point()); // Accumulated the experience point.
 
                 // Check if the level can be increased.
@@ -408,17 +408,17 @@ public class Player extends Brawler implements GodHand, Runnable {
                     this.obtainedItemStatus = "";
                     if(this.enemies[index].getCurrent_health_point() == 0) {
                         // Stop this process when the enemy don't have any leftover HP.
-                        skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "는 싸늘한 주검으로 되어있습니다."; // The attack missed.
+                        skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + " is already unconscious.";
                         break;
                     }
-                    skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "에게 " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + "데미지를 입혔다."; // The attack hit.
+                    skillUse += "\nSYSTEM : Inflicted " + UserInterface.ANSI_YELLOW + damage + UserInterface.ANSI_RESET + " damage to " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "."; // The attack hit.
                     this.enemies[index].setCurrent_health_point(this.enemies[index].getCurrent_health_point() - damage); // Update the HP of the enemy.
                     StageMap.updateStageMap(this.enemies[index]);
 
                     if(enemies[index].getCurrent_health_point() == 0) {
                         //IF THE ENEMY"S BEEN DOWN, GIVE EXP TO THE PLAYER
-                        skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + "를 쓰러트렸습니다."; // The attack missed.
-                        skillUse += "\nSYSTEM : " + this.enemies[index].getExperience_point() + "경험치를 얻었습니다."; // The attack missed.
+                        skillUse += "\nSYSTEM : " + UserInterface.ANSI_RED + this.enemies[index].getName() + UserInterface.ANSI_RESET + " is defeated.";
+                        skillUse += "\nSYSTEM : Earned " + this.enemies[index].getExperience_point() + " EXP points.";
                         this.setAccumulated_experience(this.getAccumulated_experience() + this.enemies[index].getExperience_point()); // Accumulated the experience point.
 
                         // Check if the level can be increased.
@@ -443,9 +443,9 @@ public class Player extends Brawler implements GodHand, Runnable {
      */
     public void useBuffSkill(boolean available) {
         if (available) {
-            this.usedSkillStatus = "\nSYSTEM : 3턴 동안 공격력이 25% 증가합니다.";
+            this.usedSkillStatus = "\nSYSTEM : For 3 turns, the attack point will increase by 25%.";
         } else {
-            this.usedSkillStatus = "\nSYSTEM : 이미 버프가 적용되고 있습니다.";
+            this.usedSkillStatus = "\nSYSTEM : The buff is already active.";
         }
     }
 
@@ -458,7 +458,7 @@ public class Player extends Brawler implements GodHand, Runnable {
         if(this.getLevel() < (this.getAccumulated_experience() / this.getRequired_experience())){
             int level = this.getAccumulated_experience() / this.getRequired_experience();
             this.levelUpStatus += "SYSTEM : " + UserInterface.ANSI_YELLOW + "LEVEL UP!" + UserInterface.ANSI_RESET; // Show leveled up message.
-            this.levelUpStatus += "\nSYSTEM : " + level + " 레벨이 되었습니다."; // Show leveled up message.
+            this.levelUpStatus += "\nSYSTEM : You have became level " + level + "."; // Show leveled up message.
             this.setLevel(level); // Update the level.
             this.updateStatus(); // Update the status.
         };
@@ -544,12 +544,12 @@ public class Player extends Brawler implements GodHand, Runnable {
             for (int index = 0; index < this.inventory.length; index++){
                 if(this.inventory[index] == null){
                     this.inventory[index] = dropped_item;
-                    this.obtainedItemStatus += "SYSTEM : " + UserInterface.ANSI_YELLOW + dropped_item.getName() + UserInterface.ANSI_RESET + "를 획득했습니다.";
+                    this.obtainedItemStatus += "SYSTEM : Earned " + UserInterface.ANSI_YELLOW + dropped_item.getName() + UserInterface.ANSI_RESET + ".";
                     break; // To prevent the inventory storing the same item multiple times, stop the loop.
                 }
                 if(index == this.inventory.length -1) {
                     // If there is no empty slot in the inventory, tell the player that no more items can be kept.
-                    this.obtainedItemStatus += "SYSTEM : " + "인벤토리가 가득 찼습니다." + UserInterface.ANSI_YELLOW + dropped_item.getName() + UserInterface.ANSI_RESET + "를 버렸습니다.";
+                    this.obtainedItemStatus += "SYSTEM : " + "You inventory is full. Discarded" + UserInterface.ANSI_YELLOW + dropped_item.getName() + UserInterface.ANSI_RESET + ".";
                 }
             }
         }
@@ -581,7 +581,7 @@ public class Player extends Brawler implements GodHand, Runnable {
 //                }
 
                 super.setCurrent_health_point(super.getCurrent_health_point() + (int) (super.getHealth_point() * (potion_effect / 100.0)));
-                this.usedItemEffect = "\nSYSTEM : " + "HP를 " + (int) (super.getHealth_point() * (potion_effect / 100.0)) + "만큼 회복했습니다.";
+                this.usedItemEffect = "\nSYSTEM : " + "Recovered HP by " + (int) (super.getHealth_point() * (potion_effect / 100.0)) + " points.";
             } else if (item instanceof StaminaPotion) {
                 // Get the stamina recovery point from the StaminaPotion
                 potion_effect = ((StaminaPotion) item).getRecovery_point();
@@ -593,7 +593,7 @@ public class Player extends Brawler implements GodHand, Runnable {
 //                }
 
                 super.setCurrent_stamina_point(super.getCurrent_stamina_point() + (int) (super.getStamina_point() * (potion_effect / 100.0)));
-                this.usedItemEffect = "\nSYSTEM : " + "SP를 " + (int) (super.getStamina_point() * (potion_effect / 100.0)) + "만큼 회복했습니다.";
+                this.usedItemEffect = "\nSYSTEM : " + "Recovered SP by " + (int) (super.getStamina_point() * (potion_effect / 100.0)) + " points.";
             } else if (item instanceof MixPotion) {
                 // Get the HP & stamina recovery point from the MixPotion.
                 potion_effect = ((MixPotion) item).getRecovery_point();
@@ -606,7 +606,7 @@ public class Player extends Brawler implements GodHand, Runnable {
 
                 super.setCurrent_health_point(super.getCurrent_health_point() + (int) (super.getHealth_point() * (potion_effect / 100.0)));
                 super.setCurrent_stamina_point(super.getCurrent_stamina_point() + (int) (super.getStamina_point() * (potion_effect / 100.0)));
-                this.usedItemEffect =  "\nSYSTEM : " + "HP와 SP가 각각 " + (int) (super.getHealth_point() * (potion_effect / 100.0)) + ", " + (int) (super.getStamina_point() * (potion_effect / 100.0)) + "만큼 회복되었습니다.";
+                this.usedItemEffect =  "\nSYSTEM : " + "Recovered HP & SP by " + (int) (super.getHealth_point() * (potion_effect / 100.0)) + " and " + (int) (super.getStamina_point() * (potion_effect / 100.0)) + "respectively.";
             }
 
         } else if (item instanceof Equipment) {
@@ -614,22 +614,22 @@ public class Player extends Brawler implements GodHand, Runnable {
                 if(item instanceof UpperBody && this.getEquipped_armor()[0] == null) {
                     // Equip the upper body armor
                     this.getEquipped_armor()[0] = (UpperBody)item;
-                    this.usedItemEffect = "SYSTEM : " + item.getName() + "을 착용합니다.";
+                    this.usedItemEffect = "SYSTEM : Equipped " + item.getName() + ".";
                 } else if (item instanceof LowerBody && this.getEquipped_armor()[1] == null) {
                     // Equip the lower body armor
                     this.getEquipped_armor()[1] = (LowerBody)item;
-                    this.usedItemEffect = "SYSTEM : " + item.getName() + "을 착용합니다.";
+                    this.usedItemEffect = "SYSTEM : Equipped " + item.getName() + ".";
                 } else if ((item instanceof Blade || item instanceof Blunt || item instanceof Gun) && this.getEquipped_weapon() == null) {
                     // Equip the weapon
                     super.setEquipped_weapon((Equipment) item);
-                    this.usedItemEffect = "SYSTEM : " + item.getName() + "을 착용합니다.";
+                    this.usedItemEffect = "SYSTEM : Equipped " + item.getName() + ".";
                 } else {
                     // Show a message that you cannot use the other equipment, yet.
-                    this.usedItemEffect = "SYSTEM : 이미 같은 부위에 착용 중인 장비가 있습니다.";
+                    this.usedItemEffect = "SYSTEM : You are already equipped with something.";
                     return; // Stop further the process.
                 }
         } else {
-            this.usedItemEffect = "SYSTEM : 아이템이 없습니다.";
+            this.usedItemEffect = "SYSTEM : There is no item.";
             return; // Stop further the process.
         }
         this.inventory[item_index] = null; // Make the inventory slot empty, because the potion has been used.
@@ -754,8 +754,8 @@ public class Player extends Brawler implements GodHand, Runnable {
             if(this.inventory[index] == null){
                 this.inventory[index] = boughtItem; // Store the item in the inventory.
                 this.setMoney(this.getMoney() - boughtItem.getPrice()); // Update the possessing money.
-                System.out.println("\nSYSTEM : " +  UserInterface.ANSI_CYAN + boughtItem.getName() + UserInterface.ANSI_RESET + " 1개를 구입했습니다."); // Show the shopping result.
-                System.out.println("SYSTEM : " + "(엔터 키를 눌러서 계속 진행합니다.)");
+                System.out.println("\nSYSTEM : Bought " +  UserInterface.ANSI_CYAN + boughtItem.getName() + UserInterface.ANSI_RESET + " (1ea)."); // Show the shopping result.
+                System.out.println("SYSTEM : " + "(Press 'Enter' key to proceed.)");
                 UserInterface.getInput();
                 break;
             }
@@ -771,9 +771,9 @@ public class Player extends Brawler implements GodHand, Runnable {
             UserInterface.invalidateInput();
         } else {
             this.setMoney(this.getMoney() + (this.inventory[index].getPrice() / 2 ));
-            System.out.println("\nSYSTEM : " +  UserInterface.ANSI_CYAN + this.inventory[index].getName() + UserInterface.ANSI_RESET + " 1개를 판매했습니다."); // Show the shopping result.
+            System.out.println("\nSYSTEM : Sold " +  UserInterface.ANSI_CYAN + this.inventory[index].getName() + UserInterface.ANSI_RESET + " (1ea)."); // Show the shopping result.
             this.inventory[index] = null;
-            System.out.println("SYSTEM : " + "(엔터 키를 눌러서 계속 진행합니다.)");
+            System.out.println("SYSTEM : " + "(Press 'Enter' key to proceed.)");
             UserInterface.getInput();
         }
     }
@@ -833,10 +833,6 @@ public class Player extends Brawler implements GodHand, Runnable {
         return armor_extra_defense;
     }
 
-    public boolean isThread_flag() {
-        return thread_flag.get();
-    }
-
     public void targetEnemies(EnemyBoss boss, Enemy [] enemies){
         this.boss = boss;
         this.enemies = enemies;
@@ -862,20 +858,12 @@ public class Player extends Brawler implements GodHand, Runnable {
         return usedSkillStatus;
     }
 
-    public void setUsedSkillStatus(String usedSkillStatus) {
-        this.usedSkillStatus = usedSkillStatus;
-    }
-
     public void setUsedItemEffect(String usedItemEffect) {
         this.usedItemEffect = usedItemEffect;
     }
 
     public String getObtainedItemStatus() {
         return obtainedItemStatus;
-    }
-
-    public void setObtainedItemStatus(String obtainedItemStatus) {
-        this.obtainedItemStatus = obtainedItemStatus;
     }
 
     public void activatePlayerStatus(){
@@ -896,10 +884,6 @@ public class Player extends Brawler implements GodHand, Runnable {
 
     public Runnable getRunnable() {
         return runnable;
-    }
-
-    public Thread getThread() {
-        return thread;
     }
 
     @Override

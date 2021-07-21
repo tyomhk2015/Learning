@@ -9,7 +9,7 @@ public class Gun extends Equipment {
 //    private final int attack_range = 3; // The reach of the attack.
 
     public Gun() {
-        super.setType("무기:총류");
+        super.setType("Weapon: Gun");
     }
 
     public int getExtra_evasion_point() {

@@ -8,7 +8,7 @@ public class LowerBody extends Equipment {
     private int extra_defense_point; // Extra defense_point while wearing MetalGreaves.
 
     public LowerBody() {
-        super.setType("방어구:하의");
+        super.setType("Armor: Lower-body");
     }
 
     public int getLowered_evasion_point() {

@@ -8,7 +8,7 @@ public class UpperBody extends Equipment {
     private int extra_defense_point; // Extra defense_point while wearing MetalVest.
 
     public UpperBody() {
-        super.setType("방어구:상의");
+        super.setType("Armor: Upper-body");
 
     }
 
