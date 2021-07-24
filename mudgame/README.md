@@ -1,4 +1,4 @@
-## Java CLI game
+## Java CLI game 🎮
 
 Features used in the development.
 - Multi-thread.
